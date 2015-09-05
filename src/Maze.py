@@ -19,8 +19,6 @@ from Constants import *
 ## http://home.comcast.net/~jpittman2/pacman/pacmandossier.html
 ##
 
-
-
 def collide_center(left,right):
     return left.collidepoint(right.center)
 
@@ -50,8 +48,9 @@ class Maze(pygame.sprite.RenderUpdates):
         self.legal = pygame.sprite.RenderUpdates()   # dots and voids
         self.illegal = pygame.sprite.RenderUpdates() # walls
         self.dots = pygame.sprite.RenderUpdates()    # just dots
-        self.eaten = []                      # move eaten dots here
-        self.tunnelMouths = []               # collect tunnel mouths
+        self.eaten = []                              # move eaten dots here
+        self.tunnelMouths = []                       # collect tunnel mouths
+        
         self.players = pygame.sprite.RenderUpdates()
         self.ghosts = pygame.sprite.RenderUpdates()
         self.guys = pygame.sprite.RenderUpdates()
@@ -65,8 +64,6 @@ class Maze(pygame.sprite.RenderUpdates):
         s.extend(self.map)
         s.append("W/H = %d,%d" % (self.width,self.height))
         return '\n'.join(s)
-
-
 
     @property
     def rect(self):
@@ -140,7 +137,7 @@ class Maze(pygame.sprite.RenderUpdates):
                 continue
 
             if grid.isPlayerSpawn:
-                self.puckman = Puckman((0,0),(grid.rect.w,grid.rect.w),LEFT,self)
+                self.puckman = Puckman((0,0),grid.rect.size,LEFT,self)
                 self.puckman.rect.center = grid.rect.midright
                 self.players.add(self.puckman)
                 continue
@@ -225,10 +222,7 @@ class Maze(pygame.sprite.RenderUpdates):
                 self.puckman.eat(dot)
 
             if self.puckman.isEnergized:
-                self.Blinky.panic()
-                self.Inky.panic()
-                self.Pinky.panic()
-                self.Clyde.panic()
+                [ghost.panic() for ghost in self.ghosts]
 
             print "Score: ",self.puckman.score,"dots left:", len(self.dots)
 

@@ -7,8 +7,8 @@ This is an unfinished pacman written in python using the pygame framework.
 It's interesting for a couple of reasons, despite being unfinished:
 
  1. State machine driven
- 2. Maze generation driven by text configuration file
- 3. Much of the design was driven by the excellent Pacman deconstruction, [Pacman Dossier](http://home.comcast.net/~jpittman2/pacman/pacmandossier.html)
+ 2. Maze constructed from text file description
+ 3. Much of the design detail was stolen shamelessly from the excellent Pacman deconstruction, [Pacman Dossier](http://home.comcast.net/~jpittman2/pacman/pacmandossier.html)
 
 In it's current state, the Puckman can be manuvered through the maze and eat dots (regular and power). The ghosts
 are placed in the maze, but they are largely unfinished: no sprite animations, no movement, no direct interaction
